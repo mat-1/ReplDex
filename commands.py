@@ -4,22 +4,21 @@ import asyncio
 from config import EDITOR_IDS, BASE_URL, ADMIN_IDS, BLACKLIST_IDS
 import database
 import utils
-blacklist_wait = 5
+
 # ACTUAL COMMANDS START HERE
 
 
 @betterbot.command(name='help', allowed=True)
 async def help(message, *args):
-	if message.message.author.id in BLACKLIST_IDS:
-		await asyncio.sleep(blacklist_wait)
-
+	# TODO: implement cooldown (istead of waiting before sending the result)
+	
 	commands = {
 		'search <query>': 'Finds entries that match the query',
 		'entry <name>': 'Shows the matching entry',
 		'random': 'Gets a random entry',
 		'request <entry>': 'Lets noneditors request a Repldex entry',
-		'selfentry': 'Gets your own entry if you have one.',
-		'source': 'Links my source on github'
+		'source': 'Links my source on github',
+		'selfentry': 'Gets your own entry if you have one.'
 	}
 	if message.author.id in EDITOR_IDS:
 		commands['selfentry <name>'] = 'Links you to your entry (editor only)'
@@ -139,8 +138,6 @@ async def link_source(message,*args):
 
 @betterbot.command(name='entry', allowed=True)
 async def show_entry(message, *args):
-	if message.message.author.id in BLACKLIST_IDS:
-		await asyncio.sleep(blacklist_wait)
 	search_query = ' '.join(args)
 	found = await database.search_entries(search_query, limit=1)
 	if found:
