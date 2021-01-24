@@ -47,7 +47,7 @@ async def edit_entry(
 ):
 	t = datetime.now()
 	title = title.strip()
-	await discordbot.log_edit(editor, title, t)
+	await discordbot.log_edit(editor=editor, title=title, time=t, unlisted=unlisted, entry_id=entry_id)
 	content = utils.fix_html(content)
 	nohtml_content = utils.remove_html(content)
 	new_data = {'title': title, 'content': content, 'last_edited': t, 'nohtml_content': nohtml_content}
