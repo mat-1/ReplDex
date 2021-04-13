@@ -68,15 +68,15 @@ document.addEventListener('DOMContentLoaded', () => {
   <p class="contributors">
     Top entry contributors:
     {% for editor_id in top_editors %}
-			{% if editor_id|personalentry %}
-				<a class="contributor" href="/entry/{{ editor_id|personalentry }}">
-					{{ editor_id|discordid }}
-				</a>
-			{% else %}
-				<span class="contributor">
-					{{ editor_id|discordid }}
-				</span>
-			{% endif %}
+		{%- if editor_id|personalentry -%}
+			<a class="contributor" href="/entry/{{ editor_id|personalentry }}">
+				{{- editor_id|discordid or '<unknown>' -}}
+			</a>
+		{%- else -%}
+			<span class="contributor">
+				{{- editor_id|discordid or '<unknown>' -}}
+			</span>
+		{%- endif -%}
     {% endfor %}
   </p>
 

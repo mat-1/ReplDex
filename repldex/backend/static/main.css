@@ -104,6 +104,10 @@ select::-ms-expand {
   margin-bottom: 24px;
 }
 
+.contributors .contributor {
+  margin-right: .4em
+}
+
 #content-editable {
 	min-height: 10em;
 }

@@ -223,7 +223,7 @@ async def on_ready():
 
 def discord_id_to_user(user_id):
 	user = client.get_user(user_id)
-	return str(user)
+	return str(user) if user else None
 
 
 betterbot = BetterBot(prefix=prefix, bot_id=bot_id)
